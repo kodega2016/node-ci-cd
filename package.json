@@ -1,0 +1,21 @@
+{
+  "name": "ci-service-container-demo",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "seed": "node scripts/seed.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^17.2.3",
+    "express": "^4.19.0",
+    "mongoose": "^8.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.1.4"
+  }
+}
