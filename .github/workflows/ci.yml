@@ -5,34 +5,34 @@ on:
   pull_request:
 
 jobs:
-test:
- runs-on: ubuntu-latest
- container:
-   image: node:18
+  test:
+  runs-on: ubuntu-latest
+  container:
+    image: node:18
 
- services:
-   mongo:
-     image: mongo:6.0
-     ports:
-       - 27017:27017
-     options: >-
-       --health-cmd="mongosh --eval 'db.runCommand({ ping: 1 })'"
-       --health-interval=10s
-       --health-timeout=5s
-       --health-retries=5
+  services:
+    mongo:
+      image: mongo:6.0
+      ports:
+        - 27017:27017
+      options: >-
+        --health-cmd="mongosh --eval 'db.runCommand({ ping: 1 })'"
+        --health-interval=10s
+        --health-timeout=5s
+        --health-retries=5
 
- steps:
-   - uses: actions/checkout@v4
+  steps:
+    - uses: actions/checkout@v4
 
-   - name: Install dependencies
-     run: npm install
+    - name: Install dependencies
+      run: npm install
 
-   - name: Seed test data
-     env:
-       MONGO_URL: mongodb://mongo:27017/mydb
-     run: npm run seed
+    - name: Seed test data
+      env:
+        MONGO_URL: mongodb://mongo:27017/mydb
+      run: npm run seed
 
-   - name: Run tests
-     env:
-       MONGO_URL: mongodb://mongo:27017/mydb
-     run: npm test
+    - name: Run tests
+      env:
+        MONGO_URL: mongodb://mongo:27017/mydb
+      run: npm test
